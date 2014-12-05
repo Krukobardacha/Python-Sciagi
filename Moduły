@@ -1,0 +1,7 @@
+qgis.core - moduł od QGIS
+PyQt4.QtCore  -   moduł od QGIS do pracy z dodatkowymi aplikacjami
+processing.core.VectorWriter
+import arcpy  - Moduł od ArcGISa
+import os - moduł do pracy z folderami
+import shutil  - moduł do pracy z plikami
+import codecs  -  moduł odpowiadający za kodeki
