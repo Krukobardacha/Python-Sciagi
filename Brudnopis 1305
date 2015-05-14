@@ -1,0 +1,83 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+__author__ = 'kamil.kruk.geo@gmail.com'
+Name = raw_input("What is your Name? ")
+import codecs
+import xlrd
+import os
+import Tkinter
+import tkFileDialog
+import arcpy
+import shutil
+
+def finder(destin,listka,list):
+    for pliczek in os.listdir(destin):
+        if os.path.isdir(destin +"/" +pliczek):
+
+        elif pliczek[-4:] == ".xls":
+
+        elif pliczek[-4:] == ".rar" or pliczek[-4:] == ".zip":
+            listka.append(destin+pliczek)
+
+def unique_values(table, field):
+     with arcpy.da.SearchCursor(table, [field]) as cursor:
+         return sorted({row[0] for row in cursor})
+
+def Selecting
+mxd = arcpy.mapping.MapDocument("CURRENT")
+lyr = arcpy.mapping.ListLayers(mxd, "")
+
+for s in lyr:
+    expr = "\"jpt_nazwa_\"=\'"+ d +"\'"
+    print expr
+    arcpy.SelectLayerByAttribute_management("gminy","NEW_SELECTION",expr)
+
+root = Tkinter.Tk()
+root.withdraw()
+listaExcel = []
+listaZip = []
+dirname = tkFileDialog.askdirectory(parent=root, initialdir="/", title='choose dir to iterate')
+print "you choose: " + dirname
+
+try:
+    finder(dirname,listaZip,listaExcel)
+except xlrd.XLRDError as e:
+    print e.message
+    pass
+
+plik = codecs.open((dirname + "/listaZIP.txt"), 'w', "utf-8")
+for item in listaZip:
+    plik.write("%s\n" % item)
+plik.close()
+plik = codecs.open((dirname + "/listaExcel.txt"), 'w', "utf-8")
+for item in listaExcel:
+    plik.write("%s\n" % item)
+plik.close()
+
+
+
+mxd = arcpy.mapping.MapDocument("CURRENT")
+lista=arcpy.mapping.ListLayers(mxd)
+for d in lista:
+    b=unique_values(d, 'SRED_NOM_P')
+    print b
+
+destination = "D:/Nauka/SADSA/Lublinwies/pozioma/" #sciezka gdzie bede wrzucal
+destination2 = "D:/Nauka/SADSA/Lublinwies/pozioma" #sciezka gdzie bede wrzucal
+source = os.listdir(destination2) #lista dla folderu aaa
+nowa=[]
+for g in source:
+    nowa.append(g[0:4]) #przepisuje sobie do nowej listy tylko poczatki pliczkow
+count = list(set(nowa))#Funkcja set tworzy kolekcj? uporz?dkowanych i unikalnych element?w. Natomiast funkcja list zamienia kolekcj? w list?. W wyniku otrzymujemy uporz?dkowan? list? z usuni?tymi duplikatami.
+
+
+for files in source: #dla plikow w liscie
+    for c in count:
+        if files.startswith(c) and os.path.isfile(destination+files): # jezeli plik nazywa sie 4 pierwsze i jest plikiem to
+            if not os.path.exists(destination+files[0:4]): os.makedirs(destination+files[0:4])# jezeli folder nie istnieje to stworz taki
+            shutil.copy("D:/Nauka/SADSA/Lublinwies/pozioma/"+files,destination+files[0:4]) # kopiuj z sciezka+nazwapliku do destination o nazwie pierwsze cztery
+#jezeli dany plik juz jest w miejscu docelowym to sie wykrzaczy :)
+
+arcpy.RefreshTOC() # odświerzam table of contest
+arcpy.RefreshActiveView() #odświeżam aktywne okno mapy
+print('koniec')
