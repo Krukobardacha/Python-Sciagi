@@ -1,0 +1,8 @@
+import inspect
+
+ all_functions = inspect.getmembers(module, inspect.isfunction)
+ all_method = inspect.getmembers(module, inspect.ismethod)
+ all_class = inspect.getmembers(module,inspect.isclass)
+ print all_functions
+ print all_method
+ print all_class
