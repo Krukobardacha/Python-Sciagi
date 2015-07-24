@@ -1,4 +1,5 @@
 import inspect
+#import liblas - INSERT Module Name
 
  all_functions = inspect.getmembers(module, inspect.isfunction)
  all_method = inspect.getmembers(module, inspect.ismethod)
