@@ -33,3 +33,5 @@ f.seek(offset, from_what)
 0 measures from the beginning of the file, 1 uses the current file position, and 2 uses the end of the file 
 
 lines_of_text = "\n".join(lines_of_text)
+
+ddd = os.path.expanduser('~\coscos') - Dobieram sie do MYdocuments
