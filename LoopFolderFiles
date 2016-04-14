@@ -1,0 +1,4 @@
+d = r'C:\Wo\Dane23marca\test'
+for file in os.listdir(d):
+  if os.path.isfile(os.path.join(d,file)):
+    print file
