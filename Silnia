@@ -1,0 +1,10 @@
+def FirstFactorial(num): 
+    if num>1:
+        summ=num
+        for s in range(num+1)[1:]:
+            if s>2:
+                summ = summ * (s-1)
+        return summ
+    else:
+        return 1
+print(FirstFactorial(8))
